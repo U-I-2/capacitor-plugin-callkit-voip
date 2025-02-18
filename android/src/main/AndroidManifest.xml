@@ -24,7 +24,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <service android:name="sa.ihorizon.public.callkitvoip.MyConnectionService"
+        <service android:name="sa.ihorizon.callkitvoip.MyConnectionService"
             android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
             android:exported="false">
             <intent-filter>
