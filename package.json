@@ -75,5 +75,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "@capacitor/push-notifications": "^5.0.0"
   }
 }
