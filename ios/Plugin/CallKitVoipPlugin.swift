@@ -13,6 +13,7 @@ public class CallKitVoipPlugin: CAPPlugin {
     private var provider: CXProvider?
     private let voipRegistry            = PKPushRegistry(queue: nil)
     private var connectionIdRegistry : [UUID: CallConfig] = [:]
+  var pendingCallUUID: UUID?
 
     @objc func register(_ call: CAPPluginCall) {
         voipRegistry.delegate = self
@@ -74,14 +75,35 @@ extension CallKitVoipPlugin: CXProviderDelegate {
     public func providerDidReset(_ provider: CXProvider) {
 
     }
-
-    public func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-        // Answers an incoming call
-        print("CXAnswerCallAction answers an incoming call")
-        notifyEvent(eventName: "callAnswered", uuid: action.callUUID)
-        endCall(uuid: action.callUUID)
-        action.fulfill()
-    }
+ 
+  public func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
+      print("User answered the call")
+      notifyEvent(eventName: "callAnswered", uuid: action.callUUID)
+      
+      if UIApplication.shared.applicationState != .active {
+          // Save the UUID for later use
+          pendingCallUUID = action.callUUID
+          // Add observer for when the app becomes active
+          NotificationCenter.default.addObserver(self,
+                                                 selector: #selector(appDidBecomeActive),
+                                                 name: UIApplication.didBecomeActiveNotification,
+                                                 object: nil)
+      } else {
+          // If already active, end the call after a delay
+          DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+              self.endCall(uuid: action.callUUID)
+          }
+      }
+      
+      action.fulfill()
+  }
+  @objc func appDidBecomeActive(_ notification: Notification) {
+      if let uuid = pendingCallUUID {
+          self.endCall(uuid: uuid)
+          pendingCallUUID = nil
+          NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+      }
+  }
 
     public func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         // End the call
@@ -96,6 +118,25 @@ extension CallKitVoipPlugin: CXProviderDelegate {
         notifyEvent(eventName: "callStarted", uuid: action.callUUID)
         action.fulfill()
     }
+  
+  private func scheduleLocalNotification() {
+      let content = UNMutableNotificationContent()
+      content.title = "Call Started"
+      content.body = "Tap to open BeeHome"
+      content.userInfo = ["url": "beehome://"]
+      
+      // Fire the notification shortly after scheduling it
+      let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+      let request = UNNotificationRequest(identifier: "BeeHomeCallNotification",
+                                          content: content,
+                                          trigger: trigger)
+      
+      UNUserNotificationCenter.current().add(request) { error in
+          if let error = error {
+              print("Error scheduling local notification: \(error)")
+          }
+      }
+  }
 
 
 }
