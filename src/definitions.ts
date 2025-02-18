@@ -4,23 +4,23 @@ export interface CallKitVoipPlugin {
   register(): Promise<void>;
 
   addListener(
-      eventName: 'registration',
-      listenerFunc: (token:CallToken)   => void
+    eventName: 'registration',
+    listenerFunc: (token: CallToken) => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 
   addListener(
-      eventName: 'callAnswered',
-      listenerFunc: (callData: CallData)  => void
+    eventName: 'callAnswered',
+    listenerFunc: (callData: CallData) => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 
   addListener(
-      eventName: 'callStarted',
-      listenerFunc: (callData: CallData) => void
+    eventName: 'callStarted',
+    listenerFunc: (callData: CallData) => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 
   addListener(
-      eventName: 'callEnded',
-      listenerFunc: (callData: CallData) => void
+    eventName: 'callEnded',
+    listenerFunc: (callData: CallData) => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
 
@@ -40,7 +40,7 @@ export interface CallData {
   /**
    * Call ID
    */
-  id:string;
+  id: string;
   /**
    * Call Type
    */
@@ -48,9 +48,17 @@ export interface CallData {
   /**
    * Call Display name
    */
-  name?:string;
+  name?: string;
   /**
    * Call duration
    */
-  duration?:string;
+  duration?: string;
+  /**
+   * Stream Id
+   */
+  streamId?: string;
+  /**
+ * User Photo
+ */
+  photo?: string;
 }
