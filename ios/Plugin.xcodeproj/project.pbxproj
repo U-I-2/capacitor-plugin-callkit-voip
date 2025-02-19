@@ -16,7 +16,7 @@
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50ADFFA82020EE4F00D50D53 /* CallKitVoipPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* CallKitVoipPlugin.m */; };
 		50E1A94820377CB70090CE1A /* CallKitVoipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* CallKitVoipPlugin.swift */; };
-		C2C258882D66544E002309D2 /* WebRTCiOSSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2C258872D66544E002309D2 /* WebRTCiOSSDK */; };
+		C2C258972D6660E3002309D2 /* WebRTCiOSSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2C258962D6660E3002309D2 /* WebRTCiOSSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2C258882D66544E002309D2 /* WebRTCiOSSDK in Frameworks */,
+				C2C258972D6660E3002309D2 /* WebRTCiOSSDK in Frameworks */,
 				50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */,
 				03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */,
 			);
@@ -220,7 +220,7 @@
 			);
 			mainGroup = 50ADFF7E201F53D600D50D53;
 			packageReferences = (
-				C2C258812D664B41002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */,
+				C2C258952D666084002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */,
 			);
 			productRefGroup = 50ADFF89201F53D600D50D53 /* Products */;
 			projectDirPath = "";
@@ -277,13 +277,11 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PluginTests/Pods-PluginTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Capacitor/Capacitor.framework",
 				"${BUILT_PRODUCTS_DIR}/CapacitorCordova/Cordova.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Capacitor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -596,7 +594,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C2C258812D664B41002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */ = {
+		C2C258952D666084002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ant-media/WebRTC-iOS-SDK";
 			requirement = {
@@ -607,9 +605,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C2C258872D66544E002309D2 /* WebRTCiOSSDK */ = {
+		C2C258962D6660E3002309D2 /* WebRTCiOSSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C2C258812D664B41002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */;
+			package = C2C258952D666084002309D2 /* XCRemoteSwiftPackageReference "WebRTC-iOS-SDK" */;
 			productName = WebRTCiOSSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
