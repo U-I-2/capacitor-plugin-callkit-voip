@@ -3,7 +3,6 @@ import Capacitor
 import UIKit
 import CallKit
 import PushKit
-import WebRTCiOSSDK
 
 /**
  *  CallKit Voip Plugin provides native PushKit functionality with apple CallKit to capacitor
